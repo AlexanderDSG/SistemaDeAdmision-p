@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Completo de Admisión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="no-print container mx-auto max-w-6xl mb-4 flex justify-end">
+        <button onclick="window.print()"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 ease-in-out">
+            Imprimir / Guardar como PDF
+        </button>
+    </div>
+
+    <form method="POST" action="/guardar-datos-paciente">
+        <div class="container mx-auto max-w-6xl space-y-4">
+            <!-- SECCION A -->
+
+            <!-- Codigo -->
+            <input type="text" name="estab_codigo_unico" class="form-input w-20 py-1 px-2 text-sm" placeholder="Código">
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+
+                <table class="w-full table-auto border-collapse">
+
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="header-main">A. DATOS DEL ESTABLECIMIENTO</th>
+                        </tr>
+                        <tr>
+                            <th class="subheader">Institución del Sistema</th>
+                            <th class="subheader">Unicode</th>
+                            <th class="subheader">Establecimiento de Salud</th>
+                            <th class="subheader">Número de Historia Clínica</th>
+                            <th class="subheader">Número de Archivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="estab_institucion" class="form-input" placeholder="Ej: MSP">
+                            </td>
+                            <td><input type="text" name="estab_unicode" class="form-input" placeholder="Ej: 00123"></td>
+                            <td><input type="text" name="estab_nombre" class="form-input"
+                                    placeholder="Ej: Centro de Salud #1"></td>
+                            <td><input type="text" name="estab_historia_clinica" class="form-input"
+                                    placeholder="Ej: HC00001"></td>
+                            <td><input type="text" name="estab_archivo" class="form-input" placeholder="Ej: ARC00001">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION B -->
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="header-main">B. REGISTRO DE ADMISIÓN DEL PACIENTE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="subheader" colspan="1">Fecha de admisión</th>
+                            <th class="subheader" colspan="2">Nombres y apellidos del admisionista</th>
+                            <th class="subheader" colspan="2">Historia clínica en este establecimiento</th>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><input type="date" name="adm_fecha" class="form-input"></td>
+                            <td colspan="2"><input type="text" name="adm_admisionista_nombre" class="form-input"
+                                    placeholder="Nombres y apellidos completos del admisionista"></td>
+                            <td colspan="2">
+                                <div class="flex items-center space-x-2 sm:space-x-4">
+                                    <label class="radio-label"><input type="radio" name="adm_historia_clinica_estab"
+                                            value="si" class="form-radio"><span>Sí</span></label>
+                                    <label class="radio-label"><input type="radio" name="adm_historia_clinica_estab"
+                                            value="no" class="form-radio"><span>No</span></label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Primer apellido</th>
+                            <th class="subheader">Segundo apellido</th>
+                            <th class="subheader">Primer nombre</th>
+                            <th class="subheader">Segundo nombre</th>
+                            <th class="subheader">Documento</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="pac_apellido1" class="form-input"
+                                    placeholder="Primer apellido del paciente"></td>
+                            <td><input type="text" name="pac_apellido2" class="form-input"
+                                    placeholder="Segundo apellido (Opcional)"></td>
+                            <td><input type="text" name="pac_nombre1" class="form-input"
+                                    placeholder="Primer nombre del paciente"></td>
+                            <td><input type="text" name="pac_nombre2" class="form-input"
+                                    placeholder="Segundo nombre (Opcional)"></td>
+                            <td>
+                                <select name="pac_tipo_doc" class="form-select">
+                                    <option value="" disabled selected>Seleccione tipo de documento</option>
+                                    <option value="cc_ci">CC/CI</option>
+                                    <option value="pas">PAS</option>
+                                    <option value="carne">Carné</option>
+                                    <option value="sd">S/D</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Estado civil</th>
+                            <th class="subheader">Sexo</th>
+                            <th class="subheader">N° teléfono fijo</th>
+                            <th class="subheader">N° teléfono celular</th>
+                            <th class="subheader">Fecha de nacimiento</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="pac_estado_civil" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="sol">Soltero/a</option>
+                                    <option value="cas">Casado/a</option>
+                                    <option value="div">Divorciado/a</option>
+                                    <option value="viu">Viudo/a</option>
+                                    <option value="un">Unión Libre</option>
+                                    <option value="uh">Unión de Hecho</option>
+                                    <option value="na">No Aplica/No Sabe</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="pac_sexo" class="form-select">
+                                    <option value="" disabled selected>Seleccione sexo</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
+                            </td>
+
+                            <td><input type="tel" name="pac_telefono_fijo" class="form-input"
+                                    placeholder="Ej: 022123456"></td>
+                            <td><input type="tel" name="pac_telefono_celular" class="form-input"
+                                    placeholder="Ej: 0991234567"></td>
+                            <td><input type="date" name="pac_fecha_nacimiento" class="form-input"></td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Lugar de nacimiento <br><span
+                                    class="font-normal text-xs">(País/Prov/Ciudad)</span></th>
+                            <th class="subheader">Nacionalidad</th>
+                            <th class="subheader">Edad</th>
+                            <th class="subheader">Grupo prioritario</th>
+                            <th class="subheader">Especifique (si es prioritario)</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="pac_lugar_nacimiento" class="form-input"
+                                    placeholder="País, Provincia, Ciudad"></td>
+                            <td><input type="text" name="pac_nacionalidad" class="form-input"
+                                    placeholder="Ej: Ecuatoriana"></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="number" name="pac_edad_valor" class="form-input w-20"
+                                        placeholder="Edad" min="0">
+                                    <div class="radio-group-horizontal">
+                                        <label class="radio-label"><input type="radio" name="pac_edad_unidad" value="H"
+                                                class="form-radio"><span>H</span></label>
+                                        <label class="radio-label"><input type="radio" name="pac_edad_unidad" value="D"
+                                                class="form-radio"><span>D</span></label>
+                                        <label class="radio-label"><input type="radio" name="pac_edad_unidad" value="M"
+                                                class="form-radio"><span>M</span></label>
+                                        <label class="radio-label"><input type="radio" name="pac_edad_unidad" value="A"
+                                                class="form-radio"><span>A</span></label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="flex items-center space-x-2 sm:space-x-4">
+                                    <label class="radio-label"><input type="radio" name="pac_grupo_prioritario"
+                                            value="si" class="form-radio"><span>Sí</span></label>
+                                    <label class="radio-label"><input type="radio" name="pac_grupo_prioritario"
+                                            value="no" class="form-radio"><span>No</span></label>
+                                </div>
+                            </td>
+                            <td><input type="text" name="pac_grupo_prioritario_especifique" class="form-input"
+                                    placeholder="Detalle del grupo"></td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Autoidentificación étnica</th>
+                            <th class="subheader">Nacionalidad indígena (si aplica)</th>
+                            <th class="subheader">Pueblo indígena (si aplica)</th>
+                            <th class="subheader" colspan="2">Nivel de Educación</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="pac_etnia" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="indigena">Indígena</option>
+                                    <option value="afro">Afroecuatoriano/a</option>
+                                    <option value="montubio">Montubio/a</option>
+                                    <option value="mestizo">Mestizo/a</option>
+                                    <option value="blanco">Blanco/a</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="pac_nacionalidad_indigena" class="form-input"
+                                    placeholder="Ej: Kichwa"></td>
+                            <td><input type="text" name="pac_pueblo_indigena" class="form-input"
+                                    placeholder="Ej: Otavalo"></td>
+                            <td colspan="2">
+                                <select name="pac_nivel_educacion" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="ninguno">Ninguno</option>
+                                    <option value="inicial">Educación Inicial</option>
+                                    <option value="basica_inc">Básica Incompleta</option>
+                                    <option value="basica_comp">Básica Completa</option>
+                                    <option value="bach_inc">Bachillerato Incompleto</option>
+                                    <option value="bach_comp">Bachillerato Completo</option>
+                                    <option value="superior_tec_inc">Superior Técnico Incompleto</option>
+                                    <option value="superior_tec_comp">Superior Técnico Completo</option>
+                                    <option value="superior_univ_inc">Superior Universitario Incompleto</option>
+                                    <option value="superior_univ_comp">Superior Universitario Completo</option>
+                                    <option value="postgrado">Postgrado</option>
+                                    <option value="no_sabe">No sabe</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Estado de nivel de Educación</th>
+                            <th class="subheader">Tipo de Empresa de trabajo</th>
+                            <th class="subheader">Ocupación / Profesión</th>
+                            <th class="subheader" colspan="2">Seguro de salud principal</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="pac_estado_educacion" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="cursando">Cursando Actualmente</option>
+                                    <option value="completo">Completo (Finalizado)</option>
+                                    <option value="incompleto">Incompleto (Abandonado)</option>
+                                    <option value="no_aplica">No Aplica</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="pac_tipo_empresa_trabaja" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="publica">Pública</option>
+                                    <option value="privada">Privada</option>
+                                    <option value="propia">Propia / Independiente</option>
+                                    <option value="ong">ONG / Fundación</option>
+                                    <option value="hogar">Labores de Hogar</option>
+                                    <option value="estudiante">Estudiante</option>
+                                    <option value="desempleado">Desempleado</option>
+                                    <option value="jubilado">Jubilado / Pensionista</option>
+                                    <option value="no_aplica">No Aplica</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="pac_ocupacion" class="form-input"
+                                    placeholder="Ej: Agricultor, Profesor, etc."></td>
+                            <td colspan="2">
+                                <select name="pac_seguro_salud" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="iess_gen">IESS General</option>
+                                    <option value="iess_cam">IESS Campesino</option>
+                                    <option value="isspol">ISSPOL</option>
+                                    <option value="issfa">ISSFA</option>
+                                    <option value="privado">Privado (Particular)</option>
+                                    <option value="ninguno">Ninguno</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="section-label" rowspan="2">Residencia</th>
+                            <td>
+                                <label for="res_provincia" class="form-field-label">Provincia</label>
+                                <input type="text" name="res_provincia" id="res_provincia" class="form-input"
+                                    placeholder="Ej: Pichincha">
+                            </td>
+                            <td>
+                                <label for="res_canton" class="form-field-label">Cantón</label>
+                                <input type="text" name="res_canton" id="res_canton" class="form-input"
+                                    placeholder="Ej: Quito">
+                            </td>
+                            <td>
+                                <label for="res_parroquia" class="form-field-label">Parroquia</label>
+                                <input type="text" name="res_parroquia" id="res_parroquia" class="form-input"
+                                    placeholder="Ej: Calderón">
+                            </td>
+                            <td>
+                                <label for="res_barrio_sector" class="form-field-label">Barrio o Sector</label>
+                                <input type="text" name="res_barrio_sector" id="res_barrio_sector" class="form-input"
+                                    placeholder="Ej: Carapungo">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="res_calle_principal" class="form-field-label">Calle Principal</label>
+                                <input type="text" name="res_calle_principal" id="res_calle_principal"
+                                    class="form-input" placeholder="Ej: Av. Amazonas N30-123">
+                            </td>
+                            <td>
+                                <label for="res_calle_secundaria" class="form-field-label">Calle Secundaria</label>
+                                <input type="text" name="res_calle_secundaria" id="res_calle_secundaria"
+                                    class="form-input" placeholder="Ej: Río Coca E10-45">
+                            </td>
+                            <td colspan="2">
+                                <label for="res_referencia" class="form-field-label">Referencia</label>
+                                <input type="text" name="res_referencia" id="res_referencia" class="form-input"
+                                    placeholder="Ej: Casa de 2 pisos color crema">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">En caso necesario llamar a:</th>
+                            <th class="subheader">Parentesco</th>
+                            <th class="subheader">Dirección (Contacto)</th>
+                            <th class="subheader" colspan="2">N° teléfono (Contacto)</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="contacto_emerg_nombre" class="form-input"
+                                    placeholder="Nombre completo"></td>
+                            <td><input type="text" name="contacto_emerg_parentesco" class="form-input"
+                                    placeholder="Ej: Madre, Esposo/a"></td>
+                            <td><input type="text" name="contacto_emerg_direccion" class="form-input"
+                                    placeholder="Dirección del contacto"></td>
+                            <td colspan="2"><input type="tel" name="contacto_emerg_telefono" class="form-input"
+                                    placeholder="Ej: 0987654321"></td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Forma de llegada</th>
+                            <th class="subheader">Fuente de información</th>
+                            <th class="subheader">Institución o persona que entrega al paciente</th>
+                            <th class="subheader" colspan="2">N° teléfono (Fuente)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="forma_llegada" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="ambulatorio">Ambulatorio</option>
+                                    <option value="ambulancia">Ambulancia</option>
+                                    <option value="otro_transporte">Otro transporte</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="fuente_informacion" class="form-input"
+                                    placeholder="Ej: Familiar, Policía"></td>
+                            <td><input type="text" name="entrega_paciente_nombre_inst" class="form-input"
+                                    placeholder="Nombre de persona o institución"></td>
+                            <td colspan="2"><input type="tel" name="entrega_paciente_telefono" class="form-input"
+                                    placeholder="Teléfono de quien entrega"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION C -->
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="3" class="header-main">C. INICIO DE ATENCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="subheader">Fecha</th>
+                            <th class="subheader">Hora</th>
+                            <th class="subheader">Condición de llegada</th>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="inicio_atencion_fecha" class="form-input"></td>
+                            <td><input type="time" name="inicio_atencion_hora" class="form-input"></td>
+                            <td>
+                                <select name="inicio_atencion_condicion" class="form-select">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="estable">Estable</option>
+                                    <option value="inestable">Inestable</option>
+                                    <option value="fallecido">Fallecido</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader" colspan="3">Motivo de atención</th>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <textarea name="inicio_atencion_motivo" class="form-textarea" rows="1"
+                                    placeholder="Describa el motivo principal de la atención..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION D -->
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="header-main">D. ACCIDENTES, VIOLENCIAS, INTOXICACIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="subheader">Fecha</th>
+                            <th class="subheader">Hora</th>
+                            <th class="subheader">Lugar del evento</th>
+                            <th class="subheader">Dirección del evento</th>
+                            <th class="subheader">Custodia policial</th>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="acc_fecha_evento" class="form-input"></td>
+                            <td><input type="time" name="acc_hora_evento" class="form-input"></td>
+                            <td><input type="text" name="acc_lugar_evento" class="form-input"
+                                    placeholder="Ej: Vía pública, Domicilio"></td>
+                            <td><input type="text" name="acc_direccion_evento" class="form-input"
+                                    placeholder="Dirección específica"></td>
+                            <td>
+                                <div class="flex flex-col">
+                                    <label class="radio-label"><input type="radio" name="acc_custodia_policial"
+                                            value="si" class="form-radio"><span>Sí</span></label>
+                                    <label class="radio-label"><input type="radio" name="acc_custodia_policial"
+                                            value="no" class="form-radio"><span>No</span></label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="checkbox-group">
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_transito"
+                                            class="form-checkbox"><span>Accidente de tránsito</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_arma_fuego"
+                                            class="form-checkbox"><span>Violencia por arma de fuego</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_intox_alcohol"
+                                            class="form-checkbox"><span>Intoxicación
+                                            alcohólica</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_caida"
+                                            class="form-checkbox"><span>Caída</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_arma_cp"
+                                            class="form-checkbox"><span>Violencia por arma C.
+                                            punzante</span></label>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_tipo_intox_alimentaria" class="form-checkbox"><span>Intoxicación
+                                            alimentaria</span></label>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_quemadura"
+                                            class="form-checkbox"><span>Quemadura</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_rina"
+                                            class="form-checkbox"><span>Violencia por riña</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_intox_drogas"
+                                            class="form-checkbox"><span>Intoxicación
+                                            por drogas</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_mordedura"
+                                            class="form-checkbox"><span>Mordedura</span></label>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_tipo_violencia_familiar" class="form-checkbox"><span>Violencia
+                                            familiar</span></label>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_tipo_inhalacion_gases" class="form-checkbox"><span>Inhalación
+                                            de
+                                            gases</span></label>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_otro_accidente_custodia" class="form-checkbox"><span>Otro
+                                            accidente</span></label>
+
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr class="checkbox-group">
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_cuerpo_extrano"
+                                            class="form-checkbox"><span>Cuerpo
+                                            extraño</span></label>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_tipo_violencia_psicologica" class="form-checkbox"><span>Presunta
+                                            violencia psicológica</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_picadura"
+                                            class="form-checkbox"><span>Picadura</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_aplastamiento"
+                                            class="form-checkbox"><span>Aplastamiento</span></label>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_tipo_violencia_sexual" class="form-checkbox"><span>Presunta
+                                            violencia sexual</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_envenenamiento"
+                                            class="form-checkbox"><span>Envenenamiento</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_ahogamiento"
+                                            class="form-checkbox"><span>Ahogamiento</span></label>
+                                    <label class="checkbox-label"><input type="checkbox"
+                                            name="acc_tipo_violencia_fisica" class="form-checkbox"><span>Presunta
+                                            violencia física</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="acc_tipo_otra_intox"
+                                            class="form-checkbox"><span>Otra intoxicación</span></label>
+                                </div>
+
+
+                            </td>
+                            <td>
+                                <label class="checkbox-label mt-1"><input type="checkbox" name="acc_anafilaxia_custodia"
+                                        class="form-checkbox"><span>Anafilaxia</span></label>
+                            </td>
+                            <td>
+                                <div class="mt-1">
+                                    <span class="text-sm font-medium text-gray-700 mr-2">Notificación:</span>
+                                    <label class="radio-label inline-flex items-center"><input type="radio"
+                                            name="acc_notificacion_custodia" value="si"
+                                            class="form-radio"><span>Sí</span></label>
+                                    <label class="radio-label inline-flex items-center"><input type="radio"
+                                            name="acc_notificacion_custodia" value="no"
+                                            class="form-radio"><span>No</span></label>
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <th class="subheader" colspan="3">Observaciones</th>
+                            <th class="subheader" colspan="2">Indicadores Adicionales</th>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <textarea name="acc_observaciones" class="form-textarea" rows="1"
+                                    placeholder="Detalle las observaciones del accidente, violencia o intoxicación..."></textarea>
+                            </td>
+                            <td colspan="2" style="vertical-align: middle;">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="acc_sugestivo_alcohol" class="form-checkbox">
+                                    <span>Sugestivo de ingesta alcohólica</span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--SECCION E  -->
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="10" class="header-main"> E. ANTECEDENTES PATOLÓGICOS
+                                PERSONALES Y
+                                FAMILIARES
+                                <label class="header-checkbox-label float-right"
+                                    style="font-weight: normal; font-size: 0.65rem;">
+                                    <span class="note-text float-right">Seleccione el número correspondiente y describa
+                                        (señalando el
+                                        número) en la
+                                        columna
+                                        de
+                                        descripción de antecedentes.</span>
+                                </label>
+
+                                <th colspan="5" class="header-main">
+                                    <label class="header-checkbox-label float-right"
+                                        style="font-weight: normal; font-size: 0.65rem;">
+                                        <input type="checkbox" name="ant_no_aplica" class="form-checkbox ">
+                                        <span>No aplica</span>
+                                    </label>
+                                </th>
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+
+                        <tr class="antecedentes-checkbox-group">
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_alergicos"
+                                            class="form-checkbox"><span>1. Alérgicos</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_clinicos"
+                                            class="form-checkbox"><span>2. Clínicos</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_ginecologicos"
+                                            class="form-checkbox"><span>3. Ginecológicos</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_traumatologicos"
+                                            class="form-checkbox"><span>4. Traumatológicos</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_pediatricos"
+                                            class="form-checkbox"><span>5. Pediátricos</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_quirurgicos"
+                                            class="form-checkbox"><span>6. Quirúrgicos</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_farmacologicos"
+                                            class="form-checkbox"><span>7. Farmacológicos</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_habitos"
+                                            class="form-checkbox"><span>8. Hábitos</span></label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_familiares"
+                                            class="form-checkbox"><span>9. Familiares</span></label>
+                                    <label class="checkbox-label"><input type="checkbox" name="ant_otros"
+                                            class="form-checkbox"><span>10. Otros</span></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <textarea name="ant_descripcion" class="form-textarea" rows="1"
+                                    placeholder="Ej: 1. Alergia al polen. 2. Hipertensión diagnosticada hace 5 años..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SECCION F -->
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="header-main header-main-with-note">
+                                <span class="title-text">F. ENFERMEDAD O PROBLEMA ACTUAL</span>
+                                <span
+                                    class="note-text">(cronologia-localizacion-caracteristicas-intensidad-frecuencia-factores
+                                    agravantes)</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <textarea name="ep_descripcion_actual" class="form-textarea" rows="1"
+                                    placeholder="Describa la enfermedad o problema actual del paciente, considerando los aspectos mencionados..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SECCION G -->
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="header-main">G. CONSTANTES VITALES Y ANTROPOMETRÍA</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="subheader"></th>
+                            <th class="subheader">Presión Arterial (mmHg)</th>
+                            <th class="subheader">Pulso/min</th>
+                            <th class="subheader">Frec. Resp./min</th>
+                            <th class="subheader"></th>
+                            <th class="subheader"></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="cv_sin_vitales" class="form-checkbox">
+                                <span>Sin Constantes Vitales</span>
+                            </td>
+
+                            </td>
+                            <td>
+                                <input type="text" name="cv_presion_arterial" id="cv_presion_arterial"
+                                    class="form-input" placeholder="Ej: 120/80">
+                            </td>
+                            <td>
+                                <input type="number" name="cv_pulso" id="cv_pulso" class="form-input"
+                                    placeholder="Ej: 70">
+                            </td>
+                            <td>
+                                <input type="number" name="cv_frec_resp" id="cv_frec_resp" class="form-input"
+                                    placeholder="Ej: 16">
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th class="subheader">Pulsioximetría (%)</th>
+                            <th class="subheader">Perímetro Cefálico (cm)</th>
+                            <th class="subheader">Peso (kg)</th>
+                            <th class="subheader">Talla (cm)</th>
+                            <th class="subheader">Glicemia Capilar (mg/dl)</th>
+                            <th class="subheader"></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" name="cv_pulsioximetria" id="cv_pulsioximetria" class="form-input"
+                                    placeholder="Ej: 98">
+                            </td>
+                            <td>
+                                <input type="text" name="cv_perimetro_cefalico" id="cv_perimetro_cefalico"
+                                    class="form-input" placeholder="Ej: 35">
+                            </td>
+                            <td>
+                                <input type="text" name="cv_peso" id="cv_peso" class="form-input"
+                                    placeholder="Ej: 70.5">
+                            </td>
+                            <td>
+                                <input type="number" name="cv_talla" id="cv_talla" class="form-input"
+                                    placeholder="Ej: 170">
+                            </td>
+                            <td>
+                                <input type="number" name="cv_glicemia" id="cv_glicemia" class="form-input"
+                                    placeholder="Ej: 90">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th class="subheader">Glasgow Inicial: Ocular (4)</th>
+                            <th class="subheader">Verbal (5)</th>
+                            <th class="subheader">Motora (6)</th>
+                            <th class="subheader">Reacción Pupilar Der.</th>
+                            <th class="subheader">Reacción Pupilar Izq.</th>
+                            <th class="subheader">T. Llenado Capilar (seg)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" name="cv_glasgow_ocular" id="cv_glasgow_ocular" class="form-input"
+                                    min="1" max="4">
+                            </td>
+                            <td>
+                                <input type="number" name="cv_glasgow_verbal" id="cv_glasgow_verbal" class="form-input"
+                                    min="1" max="5">
+                            </td>
+                            <td>
+                                <input type="number" name="cv_glasgow_motora" id="cv_glasgow_motora" class="form-input"
+                                    min="1" max="6">
+                            </td>
+                            <td>
+                                <input type="text" name="cv_reaccion_pupilar_der" id="cv_reaccion_pupilar_der"
+                                    class="form-input" placeholder="Normal/Lenta/Fija">
+                            </td>
+                            <td>
+                                <input type="text" name="cv_reaccion_pupilar_izq" id="cv_reaccion_pupilar_izq"
+                                    class="form-input" placeholder="Normal/Lenta/Fija">
+                            </td>
+                            <td>
+                                <input type="text" name="cv_llenado_capilar" id="cv_llenado_capilar" class="form-input"
+                                    placeholder="Ej: <2 seg">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- SECCION H -->
+            <div id="seccionHContenedor" class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="10" class="header-main"> H. EXAMEN FÍSICO
+                                <label class="header-checkbox-label float-right"
+                                    style="font-weight: normal; font-size: 0.75rem;">
+                                    <span class="note-text float-right">(seleccione cuando presente patología y
+                                        describa)</span>
+                                </label>
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody class="examen-fisico-item">
+
+                        <tr>
+                            <td class="examen-fisico-numeral">1</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_piel_faneras"
+                                        class="form-checkbox"><span>Piel-faneras</span></label></td>
+                            <td class="examen-fisico-numeral">4</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_oidos"
+                                        class="form-checkbox"><span>Oídos</span></label></td>
+                            <td class="examen-fisico-numeral">7</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_oro_faringe"
+                                        class="form-checkbox"><span>Oro faringe</span></label></td>
+                            <td class="examen-fisico-numeral">10</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_torax"
+                                        class="form-checkbox"><span>Tórax</span></label></td>
+                            <td class="examen-fisico-numeral">13</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_ingle_perine"
+                                        class="form-checkbox"><span>Ingle-periné</span></label></td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral">2</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_cabeza"
+                                        class="form-checkbox"><span>Cabeza</span></label></td>
+                            <td class="examen-fisico-numeral">5</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_nariz"
+                                        class="form-checkbox"><span>Nariz</span></label></td>
+                            <td class="examen-fisico-numeral">8</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_cuello"
+                                        class="form-checkbox"><span>Cuello</span></label></td>
+                            <td class="examen-fisico-numeral">11</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_abdomen"
+                                        class="form-checkbox"><span>Abdomen</span></label></td>
+                            <td class="examen-fisico-numeral">14</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_miembros_superiores"
+                                        class="form-checkbox"><span>Miembros sup.</span></label></td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral">3</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_ojos"
+                                        class="form-checkbox"><span>Ojos</span></label></td>
+                            <td class="examen-fisico-numeral">6</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_boca"
+                                        class="form-checkbox"><span>Boca</span></label></td>
+                            <td class="examen-fisico-numeral">9</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_axilas_mamas"
+                                        class="form-checkbox"><span>Axilas-mamas</span></label></td>
+                            <td class="examen-fisico-numeral">12</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_columna_vertebral"
+                                        class="form-checkbox"><span>Columna vertebral</span></label></td>
+                            <td class="examen-fisico-numeral">15</td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="ef_miembros_inferiores"
+                                        class="form-checkbox"><span>Miembros inf.</span></label></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="10">
+                                <textarea name="ef_descripcion" class="form-textarea" rows="1"
+                                    placeholder="Ej: 1. Palidez cutánea. 5. Secreción nasal purulenta..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION I -->
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="header-main">I. EXAMEN FÍSICO DE TRAUMA/CRÍTICO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <textarea name="eft_descripcion" class="form-textarea" rows="1"
+                                    placeholder="Describa los hallazgos del examen físico específico para trauma o paciente crítico..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SECCION J -->
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="7" class="header-main text-left">
+                                J. EMBARAZO-PARTO
+                                <label class="header-checkbox-label float-right" style="font-weight: normal; font-size: 0.65rem;">
+                                    <input  type="checkbox" name="emb_no_aplica" class="form-checkbox ">
+                                    <span>No aplica</span>
+                                </label>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="subheader">Número Gestas</th>
+                            <th class="subheader">Número Partos</th>
+                            <th class="subheader">Número Abortos</th>
+                            <th class="subheader">Número Cesáreas</th>
+                            <th class="subheader">FUM (aaaa-mm-dd)</th>
+                            <th class="subheader">Semanas Gestación</th>
+                            <th class="subheader">Movimiento Fetal</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" name="emb_gestas" id="emb_gestas" class="form-input" min="0">
+                            </td>
+                            <td>
+                                <input type="number" name="emb_partos" id="emb_partos" class="form-input" min="0">
+                            </td>
+                            <td>
+                                <input type="number" name="emb_abortos" id="emb_abortos" class="form-input" min="0">
+                            </td>
+                            <td>
+                                <input type="number" name="emb_cesareas" id="emb_cesareas" class="form-input" min="0">
+                            </td>
+                            <td>
+                                <input type="date" name="emb_fum" id="emb_fum" class="form-input">
+                            </td>
+                            <td>
+                                <input type="number" name="emb_semanas_gestacion" id="emb_semanas_gestacion"
+                                    class="form-input" min="0">
+                            </td>
+                            <td>
+                                <select name="emb_movimiento_fetal" id="emb_movimiento_fetal" class="form-select">
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="si">Sí</option>
+                                    <option value="no">No</option>
+                                    <option value="dudoso">Dudoso</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th class="subheader">Frec. Cardíaca Fetal</th>
+                            <th class="subheader">Ruptura de Membranas</th>
+                            <th class="subheader">Tiempo (horas)</th>
+                            <th class="subheader">AFU (cm)</th>
+                            <th class="subheader">Presentación</th>
+                            <th class="subheader"></th>
+                            <th class="subheader"></th>
+                        </tr>
+                        <td>
+                            <input type="number" name="emb_fcf" id="emb_fcf" class="form-input" min="0"
+                                placeholder="lpm">
+                        </td>
+                        <td>
+                            <select name="emb_ruptura_membranas" id="emb_ruptura_membranas" class="form-select">
+                                <option value="" disabled selected>Seleccione</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="emb_tiempo_ruptura" id="emb_tiempo_ruptura" class="form-input"
+                                min="0" placeholder="Si aplica">
+                        </td>
+                        <td>
+                            <input type="number" name="emb_afu" id="emb_afu" class="form-input" min="0">
+                        </td>
+                        <td>
+                            <input type="text" name="emb_presentacion" id="emb_presentacion" class="form-input"
+                                placeholder="Cefálica, Podálica, etc.">
+                        </td>
+                        <td colspan="2"></td>
+
+
+                        <tr>
+                            <th class="subheader">Dilatación (cm)</th>
+                            <th class="subheader">Borramiento (%)</th>
+                            <th class="subheader">Plano</th>
+                            <th class="subheader">Pelvis Viable</th>
+                            <th class="subheader">Sangrado Vaginal</th>
+                            <th class="subheader">Contracciones</th>
+                            <th class="subheader"></th>
+                        </tr>
+
+                        <td>
+                            <input type="number" name="emb_dilatacion" id="emb_dilatacion" class="form-input" min="0"
+                                max="10">
+                        </td>
+                        <td>
+                            <input type="number" name="emb_borramiento" id="emb_borramiento" class="form-input" min="0"
+                                max="100">
+                        </td>
+                        <td>
+                            <input type="text" name="emb_plano" id="emb_plano" class="form-input"
+                                placeholder="Ej: -2, 0, +1">
+                        </td>
+                        <td>
+                            <select name="emb_pelvis_viable" id="emb_pelvis_viable" class="form-select">
+                                <option value="" disabled selected>Seleccione</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                                <option value="dudosa">Dudosa</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="emb_sangrado_vaginal" id="emb_sangrado_vaginal" class="form-select">
+                                <option value="" disabled selected>Seleccione</option>
+                                <option value="ninguno">Ninguno</option>
+                                <option value="escaso">Escaso</option>
+                                <option value="moderado">Moderado</option>
+                                <option value="abundante">Abundante</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="emb_contracciones" id="emb_contracciones" class="form-select">
+                                <option value="" disabled selected>Seleccione</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                        <td></td>
+
+
+                        <tr>
+                            <th class="subheader">Score Mamá
+                            <td colspan="10">
+                                <textarea name="emb_score_mama" id="emb_score_mama" class="form-input"
+                                    rows="1"></textarea>
+                            </td>
+                            </th>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION K -->
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="8" class="header-main"> K. EXÁMENES COMPLEMENTARIOS
+                                <label class="header-checkbox-label float-right" style="font-weight: normal; font-size: 0.65rem;">
+                                    <input type="checkbox" name="exc_no_aplica" class="form-checkbox">
+                                    <span>No aplica</span>
+                                </label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="checkbox-group">
+
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_biometria"
+                                        class="form-checkbox"><span>1. Biometría</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_quimica_sanguinea"
+                                        class="form-checkbox"><span>3. Química Sanguínea</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_gasometria"
+                                        class="form-checkbox"><span>5. Gasometría</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_endoscopia"
+                                        class="form-checkbox"><span>7. Endoscopía</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_rx_abdomen"
+                                        class="form-checkbox"><span>9. RX Abdomen</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_eco_abdomen"
+                                        class="form-checkbox"><span>11. Ecografía Abdomen</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_tomografia"
+                                        class="form-checkbox"><span>13. Tomografía</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_interconsulta"
+                                        class="form-checkbox"><span>15. Interconsulta</span></label></td>
+                        </tr>
+                        <tr class="checkbox-group">
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_uroanalisis"
+                                        class="form-checkbox"><span>2. Uroanálisis</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_electrolitos"
+                                        class="form-checkbox"><span>4. Electrolitos</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_electrocardiograma"
+                                        class="form-checkbox"><span>6. Electrocardiograma</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_rx_torax"
+                                        class="form-checkbox"><span>8. RX Tórax</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_rx_osea"
+                                        class="form-checkbox"><span>10. RX Ósea</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_eco_pelvica"
+                                        class="form-checkbox"><span>12. Ecografía Pélvica</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_resonancia"
+                                        class="form-checkbox"><span>14. Resonancia</span></label></td>
+                            <td><label class="checkbox-label"><input type="checkbox" name="exc_otros"
+                                        class="form-checkbox"><span>16. Otros</span></label></td>
+                        </tr>
+                        <tr>
+                            <th class="subheader" colspan="8">Observaciones</th>
+                        </tr>
+                        <tr>
+                            <td colspan="8">
+                                <textarea name="exc_observaciones" class="form-textarea" rows="1"
+                                    placeholder="Describa cualquier observación relevante sobre los exámenes complementarios..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION L -->
+            <div class="flex flex-wrap justify-between diagnosticos-container">
+                <div class="diagnostico-table-container bg-white shadow-xl rounded-lg overflow-hidden mb-4 md:mb-0">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr>
+                                <th class="header-main" colspan="2">L. DIAGNÓSTICO PRESUNTIVO</th>
+                                <th class="subheader">CIE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td>
+                                    <textarea name="diag_pres_desc1" class="form-textarea" rows="1"
+                                        placeholder="Diagnóstico presuntivo"></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="diag_pres_cie1" class="form-input"
+                                        placeholder="Código CIE">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class=" text-center">2</td>
+                                <td>
+                                    <textarea name="diag_pres_desc2" class="form-textarea" rows="1"
+                                        placeholder="Diagnóstico presuntivo"></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="diag_pres_cie2" class="form-input"
+                                        placeholder="Código CIE">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">3</td>
+                                <td>
+                                    <textarea name="diag_pres_desc3" class="form-textarea" rows="1"
+                                        placeholder="Diagnóstico presuntivo"></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="diag_pres_cie3" class="form-input"
+                                        placeholder="Código CIE">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SECCION M -->
+                <div class="diagnostico-table-container bg-white shadow-xl rounded-lg overflow-hidden">
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr>
+                                <th class="header-main" colspan="2">M. DIAGNÓSTICOS DEFINITIVOS</th>
+                                <th class="subheader">CIE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td>
+                                    <textarea name="diag_def_desc1" class="form-textarea" rows="1"
+                                        placeholder="Diagnóstico definitivo"></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="diag_def_cie1" class="form-input" placeholder="Código CIE">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">2</td>
+                                <td>
+                                    <textarea name="diag_def_desc2" class="form-textarea" rows="1"
+                                        placeholder="Diagnóstico definitivo"></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="diag_def_cie2" class="form-input" placeholder="Código CIE">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">3</td>
+                                <td>
+                                    <textarea name="diag_def_desc3" class="form-textarea" rows="1"
+                                        placeholder="Diagnóstico definitivo"></textarea>
+                                </td>
+                                <td>
+                                    <input type="text" name="diag_def_cie3" class="form-input" placeholder="Código CIE">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- SECCION N -->
+            <div class="diagnostico-table-container bg-white shadow-xl rounded-lg overflow-hidden mt-6">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="6" class="header-main">N. PLAN DE TRATAMIENTO</th>
+                        </tr>
+                        <tr>
+                            <th class="subheader text-center" style="width:2em;"></th>
+                            <th class="subheader">Medicamentos</th>
+                            <th class="subheader">Vía</th>
+                            <th class="subheader">Dosis</th>
+                            <th class="subheader">Posología</th>
+                            <th class="subheader">Días</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">1</td>
+                            <td><input type="text" name="trat_med1" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via1" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis1" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia1" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias1" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">2</td>
+                            <td><input type="text" name="trat_med2" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via2" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis2" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia2" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias2" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">3</td>
+                            <td><input type="text" name="trat_med3" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via3" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis3" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia3" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias3" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">4</td>
+                            <td><input type="text" name="trat_med4" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via4" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis4" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia4" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias4" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">5</td>
+                            <td><input type="text" name="trat_med5" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via5" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis5" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia5" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias5" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">6</td>
+                            <td><input type="text" name="trat_med6" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via6" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis6" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia6" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias6" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="examen-fisico-numeral text-center">7</td>
+                            <td><input type="text" name="trat_med7" class="form-input">
+                            </td>
+                            <td><input type="text" name="trat_via7" class="form-input"></td>
+                            <td><input type="text" name="trat_dosis7" class="form-input"></td>
+                            <td><input type="text" name="trat_posologia7" class="form-input">
+                            </td>
+                            <td><input type="number" name="trat_dias7" class="form-input" min="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <textarea name="plan_tratamiento" class="form-textarea" rows="1"
+                                    placeholder="Observaciones..."></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION O -->
+            <div class="diagnostico-table-container bg-white shadow-xl rounded-lg overflow-hidden mt-6">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="7" class="header-main">O. CONDICIÓN AL EGRESO DE EMERGENCIA</th>
+                        </tr>
+                        <tr>
+                            <th class="subheader">Vivo</th>
+                            <th class="subheader">Estable</th>
+                            <th class="subheader">Inestable</th>
+                            <th class="subheader">Fallecido</th>
+                            <th class="subheader">Alta definitiva</th>
+                            <th class="subheader">Consulta externa</th>
+                            <th class="subheader">Observación de emergencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" name="egreso_vivo" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_estable" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_inestable" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_fallecido" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_alta_definitiva" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_consulta_externa" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_observacion_emergencia" class="form-checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="subheader">Hospitalización</th>
+                            <th class="subheader">Referencia</th>
+                            <th class="subheader">Referencia inversa</th>
+                            <th class="subheader">Derivación</th>
+                            <th class="subheader">Establecimiento</th>
+                            <th class="subheader" colspan="2"></th>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="egreso_hospitalizacion" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_referencia" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_referencia_inversa" class="form-checkbox"></td>
+                            <td><input type="checkbox" name="egreso_derivacion" class="form-checkbox"></td>
+                            <td><input type="text" name="egreso_establecimiento" class="form-input"
+                                    placeholder="Nombre establecimiento"></td>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <th class="subheader" colspan="5">Observación</th>
+                            <th class="subheader" colspan="2" style="text-align:left;">Días de reposo</th>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <textarea name="egreso_observacion" class="form-textarea" rows="1"
+                                    placeholder="Observaciones..."></textarea>
+                            </td>
+                            <td colspan="2">
+                                <input type="number" name="egreso_dias_reposo" class="form-input" min="0"
+                                    placeholder="Días de reposo">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- SECCION P -->
+            <div class="diagnostico-table-container bg-white shadow-xl rounded-lg overflow-hidden mt-6">
+                <table class="w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th colspan="5" class="header-main">P. DATOS DEL PROFESIONAL RESPONSABLE</th>
+                        </tr>
+                        <tr>
+                            <th class="subheader">Fecha</th>
+                            <th class="subheader">Hora</th>
+                            <th class="subheader">Primer Nombre</th>
+                            <th class="subheader">Primer Apellido</th>
+                            <th class="subheader">Segundo Apellido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="date" name="prof_fecha" class="form-input"></td>
+                            <td><input type="time" name="prof_hora" class="form-input"></td>
+                            <td><input type="text" name="prof_primer_nombre" class="form-input"
+                                    placeholder="Primer nombre"></td>
+                            <td><input type="text" name="prof_primer_apellido" class="form-input"
+                                    placeholder="Primer apellido"></td>
+                            <td><input type="text" name="prof_segundo_apellido" class="form-input"
+                                    placeholder="Segundo apellido"></td>
+                        </tr>
+                        <tr>
+                            <th class="subheader">N° Documento de Identidad</th>
+                            <th class="subheader">Firma</th>
+                            <th class="subheader">Sello</th>
+                            <th class="subheader" colspan="2"></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="prof_documento" class="form-input" placeholder="Documento">
+                            </td>
+                            <td><input type="text" name="prof_firma" class="form-input" placeholder="Firma"></td>
+                            <td><input type="text" name="prof_sello" class="form-input" placeholder="Sello"></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-end mt-8 no-print">
+                <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-150 ease-in-out">
+                    Guardar Registro de Admisión
+                </button>
+            </div>
+
+        </div>
+    </form>
+</body>
+
+</html>

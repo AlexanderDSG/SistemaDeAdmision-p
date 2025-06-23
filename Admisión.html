@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Admisión de Emergencias</title>
+    <!-- Incluyendo Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
+
+    <main class="text-center p-4 sm:p-8">
+        <!-- Logo y Título -->
+        <div class="mb-12">
+            <!-- Icono de Hospital (SVG en línea) -->
+            <div class="mx-auto bg-blue-100 rounded-full h-20 w-20 flex items-center justify-center border-4 border-white shadow-md mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                    <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 9.8c0 7.3-8 11.8-8 11.8z"/>
+                    <path d="M12 11h4"/>
+                    <path d="M12 11v4"/>
+                    <path d="M12 11v-"/>
+                </svg>
+            </div>
+            <h1 class="text-4xl font-bold text-slate-800">Sistema de Admisión de Emergencias</h1>
+            <p class="text-lg text-slate-500 mt-2">Por favor, seleccione una opción para continuar.</p>
+        </div>
+
+        <!-- Contenedor de Tarjetas de Opción -->
+        <div class="container flex flex-col sm:flex-row gap-8 justify-center">
+
+            <!-- Tarjeta 1: Registro -->
+            <a href="formulario_registro1.html" class="group block w-full sm:w-72 bg-white rounded-xl shadow-lg p-8 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 border-4 border-transparent hover:border-blue-500">
+                <div class="flex flex-col items-center justify-center h-full">
+                    <div class="mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 transition-colors duration-300 group-hover:text-blue-600">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="12" y1="18" x2="12" y2="12"></line>
+                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-slate-800 mb-2">Iniciar Admisión</h2>
+                    <p class="text-slate-500">Registrar un nuevo paciente o crear un nuevo episodio de atención.</p>
+                </div>
+            </a>
+
+            <!-- Tarjeta 2: Consulta -->
+            <a href="formulario_consulta.html" class="group block w-full sm:w-72 bg-white rounded-xl shadow-lg p-8 transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2 border-4 border-transparent hover:border-blue-500">
+                <div class="flex flex-col items-center justify-center h-full">
+                    <div class="mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 transition-colors duration-300 group-hover:text-blue-600">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-slate-800 mb-2">Consultar Paciente</h2>
+                    <p class="text-slate-500">Buscar un paciente y acceder a su historial o continuar con un registro en progreso.</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+</body>
+</html>
